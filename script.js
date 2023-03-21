@@ -78,6 +78,11 @@ function newQuestion() {
 }
 
 function checkAnswer(choice) {
+  // Check if the game is still running
+  if (gameTime <= 0) {
+    return;
+  }
+
   const element1 = parseInt(element1Button.dataset.atomicNumber);
   const element2 = parseInt(element2Button.dataset.atomicNumber);
   
@@ -86,14 +91,15 @@ function checkAnswer(choice) {
     updateScore(score);
   }
 
-  attempts++; // Add this line
-  updateAttempts(attempts); // Add this line
+  attempts++; // Increment the attempts
+  updateAttempts(attempts); // Update attempts on the screen
 
-  percentage = (score / attempts) * 100; // Add this line
-  updatePercentage(percentage); // Add this line
+  percentage = (score / attempts) * 100; // Calculate the percentage
+  updatePercentage(percentage); // Update percentage on the screen
 
   newQuestion();
 }
+
 
 function updateAttempts(attempts) {
   attemptsElement.textContent = `Attempts: ${attempts}`;
