@@ -28,11 +28,16 @@ let attempts = 0; // Add this line
 let percentage = 0; // Add this line
 let timerInterval;
 
+
 function startGame() {
   gameTime = 45;
   score = 0;
-  updateScore(0);
-  updateTimer(gameTime);
+  attempts = 0; // Reset attempts to zero
+  percentage = 0; // Reset percentage to zero
+  
+  updateScore(score);
+  updateAttempts(attempts); // Update attempts on the screen
+  updatePercentage(percentage); // Update percentage on the screen
   
   newQuestion();
   timerInterval = setInterval(() => {
@@ -43,6 +48,7 @@ function startGame() {
     }
   }, 1000);
 }
+
 
 function newQuestion() {
   let maxElementIndex;
