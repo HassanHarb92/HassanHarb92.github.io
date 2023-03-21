@@ -1,5 +1,7 @@
 const timerElement = document.getElementById('timer');
 const scoreElement = document.getElementById('score');
+const attemptsElement = document.getElementById('attempts');
+const percentageElement = document.getElementById('percentage');
 const element1Button = document.getElementById('element1');
 const element2Button = document.getElementById('element2');
 
@@ -22,6 +24,8 @@ const elements = [
 
 let gameTime = 45;
 let score = 0;
+let attempts = 0; // Add this line
+let percentage = 0; // Add this line
 let timerInterval;
 
 function startGame() {
@@ -67,7 +71,6 @@ function newQuestion() {
   element2Button.dataset.atomicNumber = element2;
 }
 
-
 function checkAnswer(choice) {
   const element1 = parseInt(element1Button.dataset.atomicNumber);
   const element2 = parseInt(element2Button.dataset.atomicNumber);
@@ -77,9 +80,23 @@ function checkAnswer(choice) {
     updateScore(score);
   }
 
-  // Load a new question after the player has made a guess
+  attempts++; // Add this line
+  updateAttempts(attempts); // Add this line
+
+  percentage = (score / attempts) * 100; // Add this line
+  updatePercentage(percentage); // Add this line
+
   newQuestion();
 }
+
+function updateAttempts(attempts) {
+  attemptsElement.textContent = `Attempts: ${attempts}`;
+}
+
+function updatePercentage(percentage) {
+  percentageElement.textContent = `Percentage: ${percentage.toFixed(2)}%`;
+}
+
 
 function updateScore(score) {
   scoreElement.textContent = `Score: ${score}`;
