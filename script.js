@@ -120,6 +120,6 @@ function updateTimer(time) {
 
 function endGame() {
   clearInterval(timerInterval);
-  alert(`Game Over! Your score: ${score}`);
+  alert(`Game Over! \n Your score: ${score} \n Percent: ${percentage.toFixed(2)}%`);
 }
 
